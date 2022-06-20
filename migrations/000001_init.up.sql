@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS book (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS author (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS book_author (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    book_id INT REFERENCES book(id) ON DELETE CASCADE,
+    author_id INT REFERENCES author(id) ON DELETE CASCADE,
+    UNIQUE (author_id, book_id)
+    );
+
+
+

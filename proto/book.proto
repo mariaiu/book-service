@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package book;
+
+option go_package = "./";
+
+service Book {
+  rpc GetBooksByAuthor (GetBooksByAuthorRequest) returns  (GetBooksByAuthorResponse) {}
+  rpc GetAuthorsByBook (GetAuthorsByBookRequest) returns (GetAuthorsByBookResponse) {}
+}
+
+message GetBooksByAuthorRequest {
+  string author = 1;
+}
+
+message GetBooksByAuthorResponse {
+  repeated Book books = 1;
+  message Book {
+    int64 id = 1;
+    string title = 2;
+  }
+}
+
+message GetAuthorsByBookRequest {
+  string book = 1;
+}
+
+message GetAuthorsByBookResponse {
+  repeated Author author = 1;
+  message Author {
+    int64 id = 1;
+    string name = 2;
+  }
+}
+
+
